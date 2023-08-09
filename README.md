@@ -1,5 +1,4 @@
 # django_chat
-Chat in django
 It is chat in django, channels and daphne. It has only one room. Open to every one to post a message. History is not saved.
 
 # Requirements

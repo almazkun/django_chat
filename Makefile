@@ -22,3 +22,6 @@ run:
 
 stop:
 	docker stop $(CONTAINER_NAME)
+
+pull:
+	docker pull $(REGISTRY)/$(IMAGE_NAME):$(VERSION)

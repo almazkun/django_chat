@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+channels = "==4.0.0"
+daphne = "==4.0.0"
+django = "==4.2.4"
+
+[dev-packages]
+isort = "*"
+autoflake = "*"
+black = "*"
+
+[requires]
+python_version = "3.11"

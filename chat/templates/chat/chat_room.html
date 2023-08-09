@@ -18,8 +18,9 @@
             </div>
             {{ object.name|json_script:"room-name" }}
             <script>
+                const isHTTPS = window.location.protocol === "https:";
                 const chatSocket = new WebSocket(
-                    'ws://'
+                    (isHTTPS ? 'wss://' : 'ws://')
                     + window.location.host
                     + '/ws/chat/'
                 );

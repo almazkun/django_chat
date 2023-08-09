@@ -1,4 +1,4 @@
-REGISTRY = ghcr.io/almazkun
+REGISTRY=ghcr.io/almazkun
 IMAGE_NAME=django-chat
 CONTAINER_NAME=django-chat-container
 VERSION=latest
@@ -18,7 +18,14 @@ push:
 	docker push $(REGISTRY)/$(IMAGE_NAME):$(VERSION)
 
 run:
-	docker run -it --rm -d -p 8000:8000 --name $(CONTAINER_NAME) $(REGISTRY)/$(IMAGE_NAME):$(VERSION)
+	docker run \
+		-it \
+		--rm \
+		-d \
+		-p 8000:8000 \
+		--name $(CONTAINER_NAME) \
+		--env-file .env \
+		$(REGISTRY)/$(IMAGE_NAME):$(VERSION)
 
 stop:
 	docker stop $(CONTAINER_NAME)

@@ -1,5 +1,8 @@
 # django_chat
-It is chat in django, channels and daphne. It has only one room. Open to every one to post a message. History is not saved.
+- It is chat build with [django](https://pypi.org/project/Django/), [channels](https://pypi.org/project/channels/) and [daphne](https://pypi.org/project/daphne/).
+- It has only one room.
+- Open to every one to post a message.
+- History is not saved.
 
 # Demo
 https://chat.akun.dev/

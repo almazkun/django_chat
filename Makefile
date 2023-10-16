@@ -5,11 +5,10 @@ VERSION=latest
 
 
 lint:
-	pipenv run isort --recursive --force-single-line-imports --line-width 999 .
-	pipenv run autoflake --recursive --ignore-init-module-imports --in-place --remove-all-unused-imports .
-	pipenv run isort --recursive --use-parentheses --trailing-comma --multi-line 3 --force-grid-wrap 0 --line-width 140 .
+	@echo "Running lint..."
+	pipenv run ruff check --fix -e .
 	pipenv run black .
-	djlint . --reformat
+	pipenv run djlint . --reformat
 
 build:
 	docker build -t $(REGISTRY)/$(IMAGE_NAME):$(VERSION) .

@@ -31,3 +31,9 @@ stop:
 
 pull:
 	docker pull $(REGISTRY)/$(IMAGE_NAME):$(VERSION)
+
+logs:
+	docker logs $(CONTAINER_NAME) -f
+
+migrate:
+	docker exec $(CONTAINER_NAME) python manage.py migrate

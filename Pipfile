@@ -6,12 +6,12 @@ name = "pypi"
 [packages]
 channels = "==4.0.0"
 daphne = "==4.0.0"
-django = "==4.2.4"
+django = "==4.2.6"
 
 [dev-packages]
-isort = "*"
-autoflake = "*"
+ruff = "*"
 black = "*"
+djlint = "*"
 
 [requires]
-python_version = "3.11"
+python_version = "3"

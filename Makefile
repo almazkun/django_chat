@@ -5,6 +5,7 @@ VERSION=latest
 
 
 lint:
+	@echo "Running lint..."
 	pipenv run ruff check --fix -e .
 	pipenv run black .
 	pipenv run djlint . --reformat

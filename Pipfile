@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 channels = "==4.0.0"
 daphne = "==4.0.0"
-django = "==4.2.6"
+django = "==5.0.1"
 
 [dev-packages]
 ruff = "*"

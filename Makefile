@@ -24,10 +24,16 @@ run:
 		-p 8000:8000 \
 		--name $(CONTAINER_NAME) \
 		--env-file .env \
-		$(REGISTRY)/$(IMAGE_NAME):$(VERSION)
+		-v $(PWD):/app \
+		--entrypoint='python' \
+		$(REGISTRY)/$(IMAGE_NAME):$(VERSION) \
+		manage.py runserver 0.0.0.0:8000
 
 stop:
 	docker stop $(CONTAINER_NAME)
+
+restart:
+	docker restart $(CONTAINER_NAME)
 
 pull:
 	docker pull $(REGISTRY)/$(IMAGE_NAME):$(VERSION)
@@ -37,3 +43,6 @@ logs:
 
 migrate:
 	docker exec $(CONTAINER_NAME) python manage.py migrate
+
+runserver:
+	pipenv run python manage.py runserver

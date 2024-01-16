@@ -1,0 +1,11 @@
+{% extends "_base.html" %}
+{% block main_content %}
+    <div class="container">
+        <div class="row pt-2">
+            <div id="chat-room-list"
+                 class="col-md-3 overflow-scroll"
+                 style="height:90dvh">{% include "chat/includes/chat_list.html" with chat_pk=chat_pk %}</div>
+            <div id="chat-room" class="col">{% include "chat/includes/chat.html" %}</div>
+        </div>
+    </div>
+{% endblock %}

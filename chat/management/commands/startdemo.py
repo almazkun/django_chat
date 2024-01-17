@@ -20,10 +20,10 @@ class Command(BaseCommand):
 
         try:
             self.admin = get_user_model().objects.create_superuser(
-                username="admin", email="admin@example.com", password="admin"
+                username=ADMIN_USERNAME, password=ADMIN_PASSWORD
             )
         except Exception:
-            self.admin = get_user_model().objects.get(username="admin")
+            self.admin = get_user_model().objects.get(username=ADMIN_USERNAME)
 
     def _create_chat(self):
         from chat.models import Chat

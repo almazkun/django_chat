@@ -1,8 +1,10 @@
 # ChatDJO
 - It is chat build with [django](https://pypi.org/project/Django/), [channels](https://pypi.org/project/channels/) and [daphne](https://pypi.org/project/daphne/).
-- It has only one room.
-- Open to every one to post a message.
-- History is not saved.
+- Multiple chat rooms.
+- Multiple users in one chat room.
+- History of messages.
+- User authentication.
+- User registration.
 
 # Demo
 https://chat.akun.dev/

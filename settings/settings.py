@@ -134,3 +134,30 @@ CHANNEL_LAYERS = {"default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}
 
 # User model
 AUTH_USER_MODEL = "chat.CustomUser"
+
+# Demo data
+ADMIN_USERNAME = os.getenv("DJANGO_ADMIN_USERNAME")
+ADMIN_PASSWORD = os.getenv("DJANGO_ADMIN_PASSWORD")
+
+# Django Debug Toolbar
+import sys
+
+if DEBUG and "test" not in sys.argv:
+    try:
+        import debug_toolbar  # noqa
+
+        INSTALLED_APPS += ["debug_toolbar"]
+        MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
+        import socket
+
+        hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+        INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + [
+            "127.0.0.1",
+            "10.0.2.2",
+        ]
+        DEBUG_TOOLBAR_CONFIG = {
+            "SHOW_TOOLBAR_CALLBACK": lambda request: True,
+        }
+
+    except Exception:
+        pass

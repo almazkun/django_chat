@@ -1,7 +1,7 @@
 REGISTRY=ghcr.io/almazkun
 IMAGE_NAME=django-chat
 CONTAINER_NAME=django-chat-container
-VERSION=latest
+VERSION=0.0.1
 
 
 lint:
@@ -12,9 +12,11 @@ lint:
 
 build:
 	docker build -t $(REGISTRY)/$(IMAGE_NAME):$(VERSION) .
+	docker tag $(REGISTRY)/$(IMAGE_NAME):$(VERSION) $(REGISTRY)/$(IMAGE_NAME):latest
 
 push:
 	docker push $(REGISTRY)/$(IMAGE_NAME):$(VERSION)
+	docker push $(REGISTRY)/$(IMAGE_NAME):latest
 
 run:
 	docker run \
@@ -24,10 +26,7 @@ run:
 		-p 8000:8000 \
 		--name $(CONTAINER_NAME) \
 		--env-file .env \
-		-v $(PWD):/app \
-		--entrypoint='python' \
-		$(REGISTRY)/$(IMAGE_NAME):$(VERSION) \
-		manage.py runserver 0.0.0.0:8000
+		$(REGISTRY)/$(IMAGE_NAME):$(VERSION)
 
 stop:
 	docker stop $(CONTAINER_NAME)
@@ -36,13 +35,16 @@ restart:
 	docker restart $(CONTAINER_NAME)
 
 pull:
-	docker pull $(REGISTRY)/$(IMAGE_NAME):$(VERSION)
+	docker pull $(REGISTRY)/$(IMAGE_NAME):latest
 
 logs:
 	docker logs $(CONTAINER_NAME) -f
 
 migrate:
 	docker exec $(CONTAINER_NAME) python manage.py migrate
+
+startdemo:
+	docker exec $(CONTAINER_NAME) python manage.py startdemo
 
 runserver:
 	pipenv run python manage.py runserver

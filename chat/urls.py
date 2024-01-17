@@ -1,10 +1,10 @@
 from django.urls import path
-from django.contrib.auth import views as auth_views
-
-from chat.views import ChatRoomListView, ChatRoomView
+from chat.views import ChatListView, ChatView, SignUpView, MyLogoutView, MyLoginView
 
 urlpatterns = [
-    path("accounts/login/", auth_views.LoginView.as_view(), name="login"),
-    path("chat/<str:pk>/", ChatRoomView.as_view(), name="chat"),
-    path("", ChatRoomListView.as_view(), name="chat_list"),
+    path("accounts/login/", MyLoginView.as_view(), name="login"),
+    path("accounts/signup/", SignUpView.as_view(), name="signup"),
+    path("accounts/logout/", MyLogoutView.as_view(), name="logout"),
+    path("chat/<str:pk>/", ChatView.as_view(), name="chat"),
+    path("", ChatListView.as_view(), name="chat_list"),
 ]

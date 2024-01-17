@@ -1,57 +1,39 @@
 from django.core.management.base import BaseCommand
+from django.conf import settings
+
+ADMIN_USERNAME = settings.ADMIN_USERNAME
+ADMIN_PASSWORD = settings.ADMIN_PASSWORD
 
 
 class Command(BaseCommand):
-    help = "Create a demo chat room with some messages."
+    help = "Create a demo chat with some messages."
 
     def handle(self, *args, **kwargs):
         self.stdout.write(self.style.WARNING("Creating demo data..."))
         self._create_users()
-        self._create_chats()
-        self._create_messages()
+        self._create_chat()
+        self._create_message()
         self.stdout.write(self.style.SUCCESS("Successfully created demo data."))
 
     def _create_users(self):
-        from chat.models import CustomUser
+        from django.contrib.auth import get_user_model
 
-        self.admin = CustomUser.objects.create_superuser(
-            username="admin", email="admin@example.com", password="admin"
-        )
+        try:
+            self.admin = get_user_model().objects.create_superuser(
+                username="admin", email="admin@example.com", password="admin"
+            )
+        except Exception:
+            self.admin = get_user_model().objects.get(username="admin")
 
-        self.user = CustomUser.objects.create_user(
-            username="user1", email="user1@example.com", password="user1"
-        )
-
-    def _create_chats(self):
+    def _create_chat(self):
         from chat.models import Chat
 
-        chat_name_list = ["My First Chat Room", "My Second Chat Room"]
+        self.chat = Chat.objects.get_or_create(name="Lobby")[0]
+        self.chat.users.add(self.admin)
 
-        self.chat_list = []
-        for chat_name in chat_name_list:
-            chat = Chat.objects.create(name=chat_name)
-            chat.users.add(self.admin, self.user)
-            self.chat_list.append(chat)
-
-    def _create_messages(self):
+    def _create_message(self):
         from chat.models import Message
 
-        message_list = [
-            "Hi there!",
-            "Nice to meet you!",
-            "How are you?",
-            "Long time no see!",
-            "How is it going?",
-            "Not too bad.",
-            "What do you do?",
-            "I'm a programmer.",
-            "What programming languages do you know?",
-            "Mainly Python and JavaScript.",
-            "That's cool!",
-            "Yeah!",
-        ]
-
-        for chat in self.chat_list:
-            for message in message_list:
-                for sender in chat.users.all():
-                    Message.objects.create(sender=sender, chat=chat, text=message)
+        Message.objects.get_or_create(
+            sender=self.admin, chat=self.chat, text="Hello from admin"
+        )

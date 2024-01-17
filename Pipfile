@@ -12,6 +12,7 @@ django = "==5.0.1"
 ruff = "*"
 black = "*"
 djlint = "*"
+django-debug-toolbar = "*"
 
 [requires]
 python_version = "3"

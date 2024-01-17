@@ -26,8 +26,7 @@ class BaseModel(models.Model):
 
 class Chat(BaseModel):
     name = models.CharField("Name", max_length=255)
-    chat_id = models.CharField("Chat ID", max_length=255)
-    users = models.ManyToManyField(CustomUser, related_name="chat_rooms")
+    users = models.ManyToManyField(CustomUser, related_name="chats")
 
     def __str__(self):
         return self.name

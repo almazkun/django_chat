@@ -31,9 +31,9 @@ ALLOWED_HOSTS = (
     else []
 )
 
-CORS_ALLOWED_ORIGINS = (
-    os.getenv("DJANGO_CORS_ALLOWED_ORIGINS").split(",")
-    if os.getenv("DJANGO_CORS_ALLOWED_ORIGINS")
+CSRF_TRUSTED_ORIGINS = (
+    os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS").split(",")
+    if os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS")
     else []
 )
 

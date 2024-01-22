@@ -1,6 +1,6 @@
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.forms import UserCreationForm
-from chat.models import CustomUser, Chat
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+
+from chat.models import Chat, CustomUser
 
 
 class BootstrapFormMixin:

@@ -1,6 +1,7 @@
 # Register your models here.
 from django.contrib import admin
-from chat.models import Chat, Message, CustomUser
+
+from chat.models import Chat, CustomUser, Message
 
 
 class CustomUserAdmin(admin.ModelAdmin):

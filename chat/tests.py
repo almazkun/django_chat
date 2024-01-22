@@ -1,12 +1,11 @@
-from django.test import TestCase
-from django.contrib.auth import get_user_model
-from django.urls import reverse
-from channels.testing import WebsocketCommunicator
 from channels.routing import URLRouter
-from django.urls import path
+from channels.testing import WebsocketCommunicator
+from django.contrib.auth import get_user_model
+from django.test import TestCase
+from django.urls import path, reverse
 
-from chat.models import Chat
 from chat.consumers import ChatConsumer
+from chat.models import Chat
 
 
 class TestView(TestCase):

@@ -1,9 +1,9 @@
-from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from chat.models import Chat
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
+from django.views.generic import CreateView, DetailView, ListView
+
 from chat.forms import LoginForm, SignUpForm
-from django.contrib.auth.views import LogoutView
+from chat.models import Chat
 
 
 class SignUpView(CreateView):

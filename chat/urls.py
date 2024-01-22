@@ -1,5 +1,6 @@
 from django.urls import path
-from chat.views import ChatListView, ChatView, SignUpView, MyLogoutView, MyLoginView
+
+from chat.views import ChatListView, ChatView, MyLoginView, MyLogoutView, SignUpView
 
 urlpatterns = [
     path("accounts/login/", MyLoginView.as_view(), name="login"),
